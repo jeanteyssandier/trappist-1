@@ -23,9 +23,9 @@ python trappist1.py  [-n, RUN_NUMBER] [-v,] [-s, SEED]
 
 Optional arguments:
 
-* `-n RUN_NUMBER, --njob RUN_NUMBER` Run number, create a binary output file 'run*n*.bin' (optional, creates a file run1.bin by default)
-* `-v, --verbose` Verbose mode, displays information every output step, optional (default off)
-* `-s SEED` Initial seed for random generator, optional
+* `-n RUN_NUMBER, --njob RUN_NUMBER` Run number, create a binary output file 'run*n*.bin' (optional, creates a file run1.bin by default, erases file if already existing)
+* `-v, --verbose` Verbose mode, displays information every output step (optional, default off)
+* `-s SEED` Initial seed for random generator (optional, default off, useful for testing)
 
 ## Output
 
