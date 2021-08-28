@@ -18,7 +18,7 @@ pip install numpy
 Usage:
 
 ```shell
-usage: python trappist1.py  [-n, RUN_NUMBER] [-v,]
+python trappist1.py  [-n, RUN_NUMBER] [-v,]
 ```
 
 Optional arguments:
