@@ -23,7 +23,6 @@ mj = 0.000954588
 me = 3.003e-6
 rj = 0.10045*rsun
 re = rj/11.209
-rs = rsun
 day2year = 2*pi/365.25
 #np.random.seed(1)
 
@@ -43,12 +42,12 @@ def run_sim(n, verbose=False):
     if os.path.exists(run_name + '.bin'):
         os.remove(run_name + '.bin')
 
-    # Trappist-1 data from Agol et al 2021
+    # Trappist-1 data from Agol et al (2021)
     NP = 7
     e_seed = 1.e-4
     i_seed = 0.
     # Star parameters
-    ms = 0.0898
+    ms = 0.0898*msun
     rs = 0.1234*rsun
     # Planet parameters
     mass   = np.array([1.374, 1.308, 0.388, 0.692, 1.039, 1.321, 0.326])*me
@@ -84,12 +83,12 @@ def run_sim(n, verbose=False):
     sim.move_to_com()
     ps = sim.particles
     sim.dt = 0.05*ps[1].P
-    rebx = reboundx.Extras(sim)
     tf = 5.e5*yr
     n_out = 5001
     times = np.linspace(0, tf, n_out)
 
-    # Add extra forces if needed
+    # Add extra forces using REBOUNDx
+    rebx = reboundx.Extras(sim)
     flag_gr  = True
     flag_mig = True
 
@@ -102,7 +101,7 @@ def run_sim(n, verbose=False):
     if flag_mig == True:
         mig = rebx.load_force("modify_orbits_forces")
         rebx.add_force(mig)
-        ta, te = migration_time(np.random.uniform(2.,3.5))
+        ta, te = migration_time(np.random.uniform(1,3))
         ps[7].params["tau_a"] = -ta
         for k in range(NP):
             ps[k+1].params["tau_e"] = -te
@@ -111,12 +110,12 @@ def run_sim(n, verbose=False):
     # Star the integration loop
     for i,time in enumerate(times):
 
-        ps = sim.particles
         sim.integrate(time)
+        ps = sim.particles
         orb = sim.calculate_orbits()
         sim.simulationarchive_snapshot(run_name+'.bin')
 
-        # Compare AMD with observed one (assuming inclinations=0)
+        # Monitor to compare AMD with observed one (assuming inclinations=0)
         amd    = 0.
         amdobs = 0.
         for k in range(NP):
