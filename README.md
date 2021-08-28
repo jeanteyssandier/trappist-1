@@ -6,7 +6,7 @@ As in [Tamayo et al. (2017)](https://ui.adsabs.harvard.edu/abs/2017ApJ...840L..1
 
 ## Requirements
 
-You'll need REBOUND ((https://github.com/hannorein/rebound) and REBOUNDx (https://github.com/dtamayo/reboundx):
+You'll need [REBOUND](https://github.com/hannorein/rebound) and [REBOUNDx](https://github.com/dtamayo/reboundx):
 ```shell
 pip install rebound
 pip install reboundx
