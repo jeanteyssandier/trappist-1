@@ -23,10 +23,10 @@ usage: python trappist1.py  [-n, RUN_NUMBER] [-v,]
 
 Optional arguments:
 
-* `-n RUN_NUMBER, --njob JOB_NUMBER` Run number, create a binary output file 'runN.bin'
+* `-n RUN_NUMBER, --njob RUN_NUMBER` Run number, create a binary output file 'run*n*.bin'
 * `-v, --verbose` Verbose mode, displays information every output step
 
 ## Output
 
-Each job creates a Rebound binary output file **runN.bin**.
-See https://rebound.readthedocs.io/en/latest/simulationarchive/ for information on the Rebound archive.
+Each job creates a REBOUND binary output file **run*n*.bin**.
+See https://rebound.readthedocs.io/en/latest/simulationarchive/ for information on the REBOUND archive.
