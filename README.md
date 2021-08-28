@@ -29,5 +29,5 @@ Optional arguments:
 
 ## Output
 
-Each job creates a REBOUND binary output file labelled by the RUN_NUMBER parameter *n* **run*n*.bin**.
+Each job creates a REBOUND binary output file labelled by the RUN_NUMBER parameter *n*: **run*n*.bin**.
 See https://rebound.readthedocs.io/en/latest/simulationarchive/ for information on the REBOUND archive.
