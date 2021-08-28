@@ -26,10 +26,9 @@ re = rj/11.209
 day2year = 2*pi/365.25
 #np.random.seed(1)
 
-def migration_time(rand):
+def migration_time(K):
     """ Compute the migration and eccentricity damping timescales """
     ta = 3.e4*yr
-    K = np.power(10,rand)
     te = ta/K
     return ta, te
 
@@ -65,11 +64,11 @@ def run_sim(n, verbose=False):
     pomega    = np.array([np.random.uniform(0,2*pi) for i in range(NP)])
     longitude = np.array([np.random.uniform(0,2*pi) for i in range(NP)])
 
-    spacing = 1.02 # 2% wide of observed spacing
-    dist = 1.2     # How far from observed periods do we start the simulation
+    dist = 2.0     # Planet b starts at twice it's current orbital period
+    spacing = 1.02 # All planets are then initiated 2% wide of observed spacing
     Pinit = np.zeros(NP)
     for ip in range(NP):
-        Pinit[ip] = np.power(spacing,ip)*dist*P[ip]
+        Pinit[ip] = np.power(spacing,ip)*dist*P[ip] # Set up the initial period of each planet
 
     # Create the simulation
     sim = rebound.Simulation()
@@ -82,15 +81,15 @@ def run_sim(n, verbose=False):
 
     sim.move_to_com()
     ps = sim.particles
-    sim.dt = 0.05*ps[1].P
-    tf = 5.e5*yr
-    n_out = 5001
+    sim.dt = 0.05*ps[1].P # Integration timestep is 5% of observed period of planet b
+    tf = 5.e5*yr          # Integration time
+    n_out = 5001          # Number of outputs
     times = np.linspace(0, tf, n_out)
 
     # Add extra forces using REBOUNDx
     rebx = reboundx.Extras(sim)
-    flag_gr  = True
-    flag_mig = True
+    flag_gr  = True  # Add GR precession
+    flag_mig = True  # Add migration and damping
 
     if flag_gr == True:
         gr = rebx.load_force("gr_potential")
@@ -101,7 +100,8 @@ def run_sim(n, verbose=False):
     if flag_mig == True:
         mig = rebx.load_force("modify_orbits_forces")
         rebx.add_force(mig)
-        ta, te = migration_time(np.random.uniform(1,3))
+        K = np.power(10, np.random.uniform(1,3)) # K=ta/te
+        ta, te = migration_time(K)
         ps[7].params["tau_a"] = -ta
         for k in range(NP):
             ps[k+1].params["tau_e"] = -te
