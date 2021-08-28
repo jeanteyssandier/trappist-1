@@ -27,7 +27,7 @@ day2year = 2*pi/365.25
 #np.random.seed(1)
 
 def migration_time(rand):
-    """ Compute the migration and e-damping timescales """
+    """ Compute the migration and eccentricity damping timescales """
     ta = 3.e4*yr
     K = np.power(10,rand)
     te = ta/K
