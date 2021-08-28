@@ -1,8 +1,8 @@
 # trappist-1
 
-This repository contains a python script to run REBOUND(x) simulation. 
+This repository contains a python script to run a REBOUND(x) simulation of migrating planets. 
 In this particular example, the setup corresponds to the 7 planets of the Trappist-1 system. 
-As in Tamayo et al. (2017, https://ui.adsabs.harvard.edu/abs/2017ApJ...840L..19T/abstract), only the outer planet migrates. Eccentricity damping is applied to all planets.
+As in [Tamayo et al. (2017)](https://ui.adsabs.harvard.edu/abs/2017ApJ...840L..19T/abstract),  only the outer planet migrates. Eccentricity damping is applied to all planets.
 
 ## Requirements
 
