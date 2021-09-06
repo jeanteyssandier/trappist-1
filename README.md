@@ -1,4 +1,4 @@
-# trappist-1
+# Trappist-1
 
 This repository contains a python script to run a REBOUND(x) simulation of migrating planets. 
 In this particular example, the setup corresponds to the 7 planets of the Trappist-1 system. 
