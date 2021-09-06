@@ -10,7 +10,6 @@ You'll need [REBOUND](https://github.com/hannorein/rebound) and [REBOUNDx](https
 ```shell
 pip install rebound
 pip install reboundx
-pip install numpy
 ```
 
 ## Execution
